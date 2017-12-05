@@ -8,7 +8,7 @@ COPY sources.list/mirrors.aliyun.com.xenial /etc/apt/sources.list
 RUN dpkg --add-architecture i386
 RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
     && echo 'APT::Install-Suggests 0;' >> /etc/apt/apt.conf.d/01norecommends \
-    #&& apt-get update \
+    && apt-get update \
     && apt-get install -y libc6-i386 openssh-server vim vim-nox-py2 sudo net-tools ca-certificates unzip bzip2 git openssh-server python python-setuptools python-pip ctags locales make cmake silversearcher-ag jq
 
 #
