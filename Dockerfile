@@ -1,7 +1,7 @@
 FROM ubuntu:19.04
 MAINTAINER bigcat <bigcatfeed@gmail.com>
 
-ARG NODEJS_VERSION="11"
+ARG NODEJS_VERSION="12"
 ARG GOLANG_VERSION="1.11.4"
 ARG ANDROID_SDK_URL="https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip"
 ARG JDK_DOWNLOAD_URL="https://download.java.net/java/GA/jdk11/7/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz"
