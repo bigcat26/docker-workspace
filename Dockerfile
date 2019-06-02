@@ -7,11 +7,10 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # use aliyun apt mirror
 RUN sed -i s/archive\.ubuntu\.com/mirrors\.aliyun\.com/ /etc/apt/sources.list
 RUN apt-get update && apt-get install -qq -y \
-    apt-transport-https ca-certificates curl software-properties-common \
-    git vim tmux locales unzip bc lzop iputils-ping net-tools wget \
-    openjdk-8-jdk python python-pip smbclient cifs-utils \
-    cmake rsync jq cppcheck clang-tidy clang-tools \
-    squashfs-tools libgmp-dev scons cpio openssh-server
+	apt-transport-https bc bzip2 ca-certificates cifs-utils clang-tidy clang-tools cmake cpio \
+	cppcheck ctags curl git iputils-ping jq libc6-i386 libgmp-dev locales lzop make net-tools \
+	openjdk-8-jdk openssh-server python python-pip python-setuptools rsync scons silversearcher-ag \
+	smbclient software-properties-common squashfs-tools sudo tmux unzip vim vim-nox-py2 wget
 
 # Chinese support
 RUN locale-gen zh_CN.UTF-8 && DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
