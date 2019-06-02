@@ -6,7 +6,11 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # use aliyun apt mirror
 RUN sed -i s/archive\.ubuntu\.com/mirrors\.aliyun\.com/ /etc/apt/sources.list
-RUN apt-get update && apt-get install -qq -y \
+RUN dpkg --add-architecture i386
+RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
+    && echo 'APT::Install-Suggests 0;' >> /etc/apt/apt.conf.d/01norecommends \
+    && apt-get update \
+	&& apt-get install -qq -y \
 	apt-transport-https bc bzip2 ca-certificates cifs-utils clang-tidy clang-tools cmake cpio \
 	cppcheck ctags curl git iputils-ping jq libc6-i386 libgmp-dev locales lzop make net-tools \
 	openjdk-8-jdk openssh-server python python-pip python-setuptools rsync scons silversearcher-ag \
