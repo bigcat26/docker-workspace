@@ -1,7 +1,14 @@
 FROM ubuntu:21.04
 LABEL maintainer="rc.local@qq.com"
 
+# Chinese support
+ENV LANG zh_CN.UTF-8
+ENV LANGUAGE zh_CN:zh
+ENV LC_ALL zh_CN.UTF-8
 ENV TZ=Asia/Shanghai
+
+# Avoid blocking docker build
+ARG DEBIAN_FRONTEND=noninteractive
 
 # use aliyun apt mirror
 RUN sed -i s/archive\.ubuntu\.com/mirrors\.aliyun\.com/ /etc/apt/sources.list
@@ -15,10 +22,6 @@ RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
 	automake libtool xz-utils openjdk-8-jdk openssh-server python3 python3-pip python3-setuptools \
     silversearcher-ag smbclient software-properties-common squashfs-tools sudo tmux unzip vim wget
 
-# Chinese support
-ENV LANG zh_CN.UTF-8
-ENV LANGUAGE zh_CN:zh
-ENV LC_ALL zh_CN.UTF-8
 
 # golang
 #ADD https://dl.google.com/go/go${GOLANG_VERSION}.linux-amd64.tar.gz /opt/
@@ -35,7 +38,7 @@ RUN mkdir -p /var/run/sshd \
     && echo 'root:root' | chpasswd \
     && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
     && echo $TZ > /etc/timezone \
-    && locale-gen zh_CN.UTF-8 && DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales \
+    && locale-gen zh_CN.UTF-8 && dpkg-reconfigure locales \
     && sed -i 's/#*PermitRootLogin .*/PermitRootLogin yes/' /etc/ssh/sshd_config \
     && sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd \
     && pip3 install --upgrade pip \
