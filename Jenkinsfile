@@ -7,7 +7,7 @@ node {
         }
 
         stage("Docker build") {
-            sh "docker build -t ubuntu-work:21.04"
+            sh "docker build . --rm -t ubuntu-work:21.04"
         }
 
         stage("Push image to registry") {
