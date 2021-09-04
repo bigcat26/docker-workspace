@@ -16,15 +16,12 @@ RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
     silversearcher-ag smbclient software-properties-common squashfs-tools sudo tmux unzip vim wget
 
 # Chinese support
-RUN locale-gen zh_CN.UTF-8 && DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
 ENV LANG zh_CN.UTF-8
 ENV LANGUAGE zh_CN:zh
 ENV LC_ALL zh_CN.UTF-8
 
 # golang
 #ADD https://dl.google.com/go/go${GOLANG_VERSION}.linux-amd64.tar.gz /opt/
-
-RUN ln -s /usr/lib/x86_64-linux-gnu/libmpfr.so.6 /usr/lib/x86_64-linux-gnu/libmpfr.so.4
 
 # android sdk
 #ADD ${ANDROID_SDK_URL} /opt/
@@ -38,11 +35,11 @@ RUN mkdir -p /var/run/sshd \
     && echo 'root:root' | chpasswd \
     && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
     && echo $TZ > /etc/timezone \
+    && locale-gen zh_CN.UTF-8 && DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales \
     && sed -i 's/#*PermitRootLogin .*/PermitRootLogin yes/' /etc/ssh/sshd_config \
     && sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd \
     && pip3 install --upgrade pip \
     && pip3 install conan
-RUN locale-gen en_US.UTF-8
 
 CMD ["/usr/sbin/sshd", "-D"]
 EXPOSE 22
