@@ -1,4 +1,4 @@
-FROM ubuntu:19.04
+FROM ubuntu:21.04
 LABEL maintainer="rc.local@qq.com"
 
 ENV TZ=Asia/Shanghai
@@ -14,7 +14,7 @@ RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
 	apt-transport-https bc bzip2 ca-certificates cifs-utils clang-tidy clang-tools cmake cpio \
 	cppcheck ctags curl git iputils-ping jq libc6-i386 libgmp-dev locales lzop make net-tools \
 	openjdk-8-jdk openssh-server python python-pip python-setuptools rsync scons silversearcher-ag \
-	smbclient software-properties-common squashfs-tools sudo tmux unzip vim vim-nox-py2 wget
+	smbclient software-properties-common squashfs-tools sudo tmux unzip vim wget
 
 # Chinese support
 RUN locale-gen zh_CN.UTF-8 && DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
