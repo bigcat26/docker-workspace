@@ -18,9 +18,9 @@ RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
     && apt-get update \
 	&& apt-get install -qq -y \
 	apt-transport-https bc bzip2 ca-certificates cifs-utils clang-tidy clang-tools cmake cpio \
-	curl git git-flow git-lfs iputils-ping jq libc6-i386 libgmp-dev locales lzop make net-tools \
+	build-essential curl git  git-flow git-lfs iputils-ping jq libc6-i386 libgmp-dev locales lzop make net-tools \
 	automake libtool xz-utils openjdk-8-jdk openssh-server python3 python3-pip python3-setuptools \
-    silversearcher-ag smbclient software-properties-common squashfs-tools sudo tmux unzip vim manpages \
+    silversearcher-ag smbclient software-properties-common squashfs-tools sudo tmux unzip vim wget manpages \
     libncurses-dev wget gcc bison flex fakeroot gettext cppcheck zlib1g:i386 
 
 
