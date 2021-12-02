@@ -18,10 +18,10 @@ RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
     && apt-get update \
 	&& apt-get install -qq -y \
 	apt-transport-https bc bzip2 ca-certificates cifs-utils clang-tidy clang-tools cmake cpio \
-	build-essential curl git  git-flow git-lfs iputils-ping jq libc6-i386 libgmp-dev locales lzop make net-tools \
-	automake libtool xz-utils openjdk-8-jdk openssh-server python3 python3-pip python3-setuptools \
+	build-essential curl git git-flow git-lfs iputils-ping jq libc6-i386 libgmp-dev locales lzop make net-tools \
+	automake libtool xz-utils openjdk-8-jdk openssh-server python3 python3-pip python3-setuptools  python-is-python3 \
 	silversearcher-ag smbclient software-properties-common squashfs-tools sudo tmux unzip vim wget manpages \
-	pkg-config libncurses-dev wget gcc bison u-boot-tools flex fakeroot bison gettext gperf cppcheck zlib1g:i386 
+	pkg-config u-boot-tools flex bison gettext gperf libncurses-dev cppcheck zlib1g:i386 
 
 
 # golang
