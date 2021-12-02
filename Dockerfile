@@ -21,7 +21,7 @@ RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
 	build-essential curl git  git-flow git-lfs iputils-ping jq libc6-i386 libgmp-dev locales lzop make net-tools \
 	automake libtool xz-utils openjdk-8-jdk openssh-server python3 python3-pip python3-setuptools \
 	silversearcher-ag smbclient software-properties-common squashfs-tools sudo tmux unzip vim wget manpages \
-	pkg-config libncurses-dev wget gcc bison u-boot-tools flex fakeroot gettext cppcheck zlib1g:i386 
+	pkg-config libncurses-dev wget gcc bison u-boot-tools flex fakeroot bison gettext gperf cppcheck zlib1g:i386 
 
 
 # golang
