@@ -1,13 +1,14 @@
-// This shows a simple example of how to archive the build output artifacts.
-node {
-    //docker.withServer('tcp://192.168.1.6:2375', null) {
+node('docker') {
 
-    sh 'printenv'
-    if (env.BRANCH_NAME == 'master') {
-	checkout scm
-        docker.withRegistry('https://registry.ringortc.com:8443', 'docker-registry-credential') {
-            def image = docker.build("ubuntu-work:21.04") // ${env.BUILD_ID}
-          image.push()
+    stage('checkout') {
+        sh 'printenv'
+	    checkout scm
+    }
+
+    stage('build') {
+        docker.withRegistry("${DOCKER_REGISTRY}", "${DOCKER_REGISTRY_CREDENTIAL}") {
+            def image = docker.build("docker/ubuntu-work:latest")
+            image.push()
         }
     }
 }
