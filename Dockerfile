@@ -20,7 +20,7 @@ RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
     && echo 'APT::Install-Suggests 0;' >> /etc/apt/apt.conf.d/01norecommends \
     && apt-get update \
 	&& apt-get install -qq -y \
-	apt-transport-https bc bzip2 ca-certificates cifs-utils clang-6.0 clang-tidy clang-tools cpio \
+	apt-transport-https bc bzip2 ca-certificates cifs-utils clang-tidy clang-tools cpio \
 	build-essential curl git git-flow git-lfs iputils-ping jq libc6-i386 libgmp-dev locales lzop make net-tools \
 	automake libtool xz-utils openjdk-8-jdk openjdk-11-jdk-headless openjdk-17-jdk-headless \
     openssh-server python3 python3-pip python3-setuptools  python-is-python3 \
