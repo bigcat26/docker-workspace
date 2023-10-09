@@ -1,3 +1,3 @@
 # README
 
-This is ubuntu:21.04 with sshd server & essential binaries for coding.
+A Ubuntu system docker image with develop environments for the programmers to use remotely over SSH.
