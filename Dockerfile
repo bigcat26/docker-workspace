@@ -26,7 +26,7 @@ RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
     silversearcher-ag smbclient software-properties-common squashfs-tools sudo \
     tmux unzip vim wget manpages pkg-config u-boot-tools flex bison gettext \
     gperf libncurses-dev cppcheck zlib1g:i386 telnet docker.io psmisc \
-    ninja-build gdb neovim
+    ninja-build gdb neovim tig
 
 # golang
 #ADD https://dl.google.com/go/go${GOLANG_VERSION}.linux-amd64.tar.gz /opt/
