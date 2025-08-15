@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 LABEL maintainer="bigcat26@gmail.com"
 
 ENV LANG zh_CN.UTF-8
@@ -6,8 +6,7 @@ ENV LANGUAGE zh_CN:zh
 ENV LC_ALL zh_CN.UTF-8
 ENV TZ=Asia/Shanghai
 
-ARG CMAKE_VERSION=3.27.7
-ARG CONAN_VERSION=1.60.2
+ARG CMAKE_VERSION=3.31.7
 
 # Avoid blocking docker build
 ARG DEBIAN_FRONTEND=noninteractive
@@ -52,10 +51,7 @@ RUN mkdir -p /var/run/sshd \
     && locale-gen zh_CN.UTF-8 && dpkg-reconfigure locales \
     && sed -i 's/#*PermitRootLogin .*/PermitRootLogin yes/' /etc/ssh/sshd_config \
     && sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd \
-    && pip3 install --upgrade pip \
-    && pip install conan==$CONAN_VERSION \
-    && conan profile new default --detect \
-    && conan profile update settings.compiler.libcxx=libstdc++11 default
+    && pip3 install --upgrade pip
 
 
 CMD ["/usr/sbin/sshd", "-D"]
