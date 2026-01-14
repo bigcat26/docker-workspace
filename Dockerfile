@@ -38,10 +38,10 @@ RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
 #RUN source "/root/.sdkman/bin/sdkman-init.sh" && sdk install gradle
 
 # add cmake
-ADD https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-linux-x86_64.tar.gz /tmp/
-RUN tar -xf /tmp/cmake-${CMAKE_VERSION}-linux-x86_64.tar.gz -C /usr/share \
-    && rm /tmp/cmake-${CMAKE_VERSION}-linux-x86_64.tar.gz \
-    && ln -sf /usr/share/cmake-${CMAKE_VERSION}-linux-x86_64/bin/cmake /usr/bin/cmake
+#ADD https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-linux-x86_64.tar.gz /tmp/
+#RUN tar -xf /tmp/cmake-${CMAKE_VERSION}-linux-x86_64.tar.gz -C /usr/share \
+#    && rm /tmp/cmake-${CMAKE_VERSION}-linux-x86_64.tar.gz \
+#    && ln -sf /usr/share/cmake-${CMAKE_VERSION}-linux-x86_64/bin/cmake /usr/bin/cmake
 
 RUN mkdir -p /var/run/sshd \
     && mkdir -p /run/sshd  \
@@ -50,9 +50,9 @@ RUN mkdir -p /var/run/sshd \
     && echo $TZ > /etc/timezone \
     && locale-gen zh_CN.UTF-8 && dpkg-reconfigure locales \
     && sed -i 's/#*PermitRootLogin .*/PermitRootLogin yes/' /etc/ssh/sshd_config \
-    && sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd \
-    && pip3 install --upgrade pip
+    && sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 
+RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 CMD ["/usr/sbin/sshd", "-D"]
 EXPOSE 22
