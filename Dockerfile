@@ -52,6 +52,10 @@ RUN mkdir -p /var/run/sshd \
     && sed -i 's/#*PermitRootLogin .*/PermitRootLogin yes/' /etc/ssh/sshd_config \
     && sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 
+# create user with home directory, add to users group and sudo group
+RUN useradd -m -g users -G sudo -s /bin/bash user \
+    && echo 'user:user' | chpasswd
+
 RUN curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh -o /root/install_brew.sh
 # RUN /bin/bash -c "$(curl -fsSL 'https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh')"
 
